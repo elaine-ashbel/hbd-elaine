@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const height = width * 1.25;
         const animDuration = 5 + Math.random() * 5; // 5s to 10s
         const bgCol = colors[Math.floor(Math.random() * colors.length)];
-        const delay = Math.random() * .5;
+        const delay = Math.random() * .4;
 
         balloon.style.left = `${leftPos}vw`;
         balloon.style.width = `${width}px`;
@@ -644,5 +644,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }, shuffleSpeed);
     });
 });
+
 
 
