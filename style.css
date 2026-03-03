@@ -1,0 +1,1064 @@
+:root {
+    --primary-color: #ff8da1;
+    /* Soft pink */
+    --secondary-color: #ffd1d9;
+    /* Lighter pink */
+    --bg-color: #ffebf0;
+    /* Light pastel pink */
+    --text-color: #4a4a4a;
+    /* Soft dark grey for readable text */
+    --font-heading: 'Dancing Script', cursive;
+    --font-body: 'Quicksand', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    overflow-x: hidden;
+    overflow-y: hidden;
+    /* Hide scrollbar until gift is opened */
+    scroll-behavior: smooth;
+}
+
+body.scrollable {
+    overflow-y: scroll;
+    /* Show scrollbar after gift interaction */
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 141, 161, 0.15);
+    /* Stronger soft pink tint */
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* Typography */
+h1,
+h2,
+h3 {
+    font-family: var(--font-heading);
+    color: var(--primary-color);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Balloons Container */
+#balloon-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    /* Let clicks pass through */
+    z-index: 100;
+    overflow: hidden;
+}
+
+.balloon {
+    position: absolute;
+    bottom: -100px;
+    width: 40px;
+    height: 50px;
+    background-color: var(--primary-color);
+    border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+    animation: floatUp 8s ease-in-out infinite;
+    opacity: 0.8;
+}
+
+.balloon::before {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 16px;
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-bottom: 8px solid var(--primary-color);
+}
+
+.balloon::after {
+    content: '';
+    position: absolute;
+    bottom: -28px;
+    left: 19px;
+    width: 2px;
+    height: 20px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-60vh) rotate(10deg);
+    }
+
+    100% {
+        transform: translateY(-120vh) rotate(-10deg);
+    }
+}
+
+/* Floating Hearts in Background Spaces */
+.ambient-obj {
+    position: fixed;
+    /* Fixed so they stay in view */
+    color: #ff4d6d;
+    /* Stronger pink */
+    animation: slowFadeFloat linear forwards;
+    opacity: 0;
+    z-index: 9998;
+    /* Above main content (sections), just below mouse trail */
+    pointer-events: none;
+    white-space: nowrap;
+    text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.4);
+}
+
+.heart-obj {
+    color: #ff4d6d;
+}
+
+@keyframes slowFadeFloat {
+    0% {
+        transform: translateY(10vh) scale(0.9);
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 0.3;
+    }
+
+    50% {
+        transform: translateY(0vh) scale(1.1);
+        opacity: 0.2;
+    }
+
+    85% {
+        opacity: 0.3;
+    }
+
+    100% {
+        transform: translateY(-10vh) scale(0.9);
+        opacity: 0;
+    }
+}
+
+/* Beautiful Soft Heart Ripple Effect */
+.ambient-obj.ripple-effect {
+    animation: rippleCore 1.0s cubic-bezier(0.2, 0.8, 0.2, 1) forwards !important;
+    pointer-events: none;
+    /* Prevent re-clicking */
+}
+
+@keyframes rippleCore {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+        filter: drop-shadow(0 0 5px rgba(255, 77, 109, 0.5));
+    }
+
+    100% {
+        transform: scale(1.5);
+        /* Heart itself grows softly and minimally */
+        opacity: 0;
+        filter: drop-shadow(0 0 20px rgba(255, 77, 109, 0));
+    }
+}
+
+@keyframes splitAnim {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translate(var(--x-move), var(--y-move)) scale(0);
+        opacity: 0;
+    }
+}
+
+/* Mouse Sparkle Trail */
+.mouse-trail {
+    position: fixed;
+    pointer-events: none;
+    width: 8px;
+    height: 8px;
+    background-color: #ffb6c1;
+    /* Soft pink dot */
+    z-index: 10000;
+    animation: sparkleFade 0.6s ease-out forwards;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    box-shadow: 0 0 6px 2px rgba(255, 182, 193, 0.6);
+}
+
+.mouse-trail::before,
+.mouse-trail::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: #ffb6c1;
+    border-radius: 50%;
+    box-shadow: 0 0 6px 2px rgba(255, 182, 193, 0.5);
+}
+
+.mouse-trail::before {
+    top: -4px;
+    left: 0;
+}
+
+.mouse-trail::after {
+    top: 0;
+    left: 4px;
+}
+
+@keyframes sparkleFade {
+    0% {
+        transform: translate(-50%, -50%) rotate(-45deg) scale(1.2);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translate(-50%, 15px) rotate(-45deg) scale(0);
+        opacity: 0;
+    }
+}
+
+/* Sections */
+section {
+    padding: 4rem 2rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 10;
+}
+
+/* Hero */
+.hero {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    /* Transparent background to inherit the main body tint seamlessly */
+}
+
+.title {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    text-shadow: 1px 1px 5px rgba(255, 141, 161, 0.2);
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #888;
+    margin-bottom: 3rem;
+}
+
+.gift-container {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    animation: bounce 2s infinite ease-in-out;
+}
+
+.gift-container:hover {
+    transform: scale(1.1);
+}
+
+.gift-svg {
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.hidden-message {
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+    transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    margin-top: 2rem;
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 90%;
+    max-width: 600px;
+    background: white;
+    padding: 3rem 2rem;
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(255, 141, 161, 0.2);
+    /* For centered absolute positioning */
+    transform: translate(-50%, -50%) scale(0.8);
+    display: none;
+    z-index: 20;
+}
+
+.hidden-message.show {
+    opacity: 1;
+    display: block;
+    transform: translate(-50%, -50%) scale(1);
+    pointer-events: auto;
+}
+
+.hidden-message h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.hidden-message p {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+/* When gift is clicked, we hide the initial content */
+.hero-content {
+    transition: opacity 0.5s ease;
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-height: 300px;
+}
+
+.hero-content.message-opened .title,
+.hero-content.message-opened .subtitle,
+.hero-content.message-opened .gift-container {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    opacity: 0;
+    /* Hidden initially */
+    transition: opacity 1s ease;
+}
+
+.scroll-indicator.visible {
+    animation: bounceArrow 2s infinite ease-in-out;
+}
+
+.arrow {
+    font-size: 3rem;
+    /* Make it larger and cuter */
+    color: var(--primary-color);
+    text-shadow: 0 4px 10px rgba(255, 141, 161, 0.4);
+    margin-top: 0;
+}
+
+@keyframes bounceArrow {
+
+    0%,
+    100% {
+        opacity: 0.7;
+        transform: translateY(0);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateY(15px);
+    }
+}
+
+/* Horizontal Scroll Memories */
+
+
+
+.cards-container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    height: 550px;
+    /* Taller for a nice portrait card feel */
+    margin: 0 auto;
+    perspective: 1000px;
+    overflow: hidden;
+    /* Hide cards sliding off to the sides */
+}
+
+.card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+    background: #f4f4f4;
+    cursor: grab;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(100%) scale(0.75);
+    /* Default starts off-screen right */
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.6s ease;
+    z-index: 0;
+}
+
+.card:active {
+    cursor: grabbing;
+}
+
+.card.prev-card {
+    transform: translateX(-115%) scale(0.85);
+    opacity: 0.6;
+    visibility: visible;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.card.next-card {
+    transform: translateX(115%) scale(0.85);
+    opacity: 0.6;
+    visibility: visible;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.card.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0) scale(1);
+    z-index: 2;
+    box-shadow: 0 20px 40px rgba(255, 141, 161, 0.3);
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2rem 1.5rem 1.5rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%);
+    color: white;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.card-overlay p {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+}
+
+.card.active:hover img {
+    transform: scale(1.05);
+}
+
+.card.active:hover .card-overlay {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* ----------------------------------- */
+/* Section 2.5: 23 Letters             */
+/* ----------------------------------- */
+.letters-section {
+    background-color: transparent;
+    overflow: hidden;
+    /* Prevent envelope paper from stretching page */
+}
+
+.letters-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.letter-controls {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    background: #fffdf9;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    box-shadow: 0 8px 25px rgba(212, 184, 153, 0.3);
+    border: 2px solid #e2d1c3;
+    /* Greek Sandal/Beige */
+    position: relative;
+}
+
+/* Greek artistic border styling around the nav */
+.letter-controls::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    right: -6px;
+    bottom: -6px;
+    border-radius: 55px;
+    border: 1px dashed #d4b899;
+    pointer-events: none;
+}
+
+.letter-btn {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #fcf6f0;
+    border: 1px solid #d4b899;
+    color: #b59275;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.letter-btn:hover {
+    transform: scale(1.1);
+    background: #d4b899;
+    color: white;
+    box-shadow: 0 4px 12px rgba(212, 184, 153, 0.4);
+}
+
+.letter-btn:active {
+    transform: scale(0.95);
+}
+
+.letter-counter-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 80px;
+}
+
+.counter-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #b59275;
+    margin-bottom: -5px;
+    font-weight: 600;
+}
+
+.letter-counter {
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    color: var(--primary-color);
+    text-align: center;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px rgba(255, 141, 161, 0.15);
+}
+
+.letter-area {
+    position: relative;
+    width: 320px;
+    height: 220px;
+    perspective: 1200px;
+}
+
+.envelope-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s ease;
+}
+
+/* Animations for slipping the envelope out and in */
+.envelope-wrapper.slide-out-up {
+    transform: translateY(-150%) scale(0.8);
+    opacity: 0;
+}
+
+.envelope-wrapper.slide-out-down {
+    transform: translateY(150%) scale(0.8);
+    opacity: 0;
+}
+
+.envelope-wrapper.slide-in-up {
+    transform: translateY(150%) scale(0.8);
+    opacity: 0;
+    transition: none;
+    /* Instantly move to bottom before sliding in */
+}
+
+.envelope-wrapper.slide-in-down {
+    transform: translateY(-150%) scale(0.8);
+    opacity: 0;
+    transition: none;
+}
+
+.envelope-wrapper.active {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+}
+
+.envelope {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    cursor: pointer;
+    background: #fdfaf6;
+    border-radius: 10px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+    display: flex;
+    justify-content: center;
+    border: 2px solid #e2d1c3;
+    /* Sandal/beige border */
+    transform-style: preserve-3d;
+}
+
+/* Inner decorative Greek border on the back of the envelope */
+.greek-border {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    right: 6px;
+    bottom: 6px;
+    border: 1px solid #d4b899;
+    border-radius: 4px;
+}
+
+.greek-border::before {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    right: 3px;
+    bottom: 3px;
+    border: 1px dashed #e2d1c3;
+    border-radius: 2px;
+}
+
+.envelope-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    z-index: 1;
+}
+
+.envelope-front {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    border-radius: 0 0 8px 8px;
+    background: #fdfaf6;
+    /* Create an envelope pocket shape */
+    clip-path: polygon(0 100%, 100% 100%, 100% 0, 50% 55%, 0 0);
+    /* Distinguish the front pocket visually with an overlay */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.05));
+}
+
+.envelope-flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    background: #fdfaf6;
+    z-index: 4;
+    border-radius: 8px 8px 0 0;
+    /* Triangle flap */
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    transform-origin: top center;
+    /* CLOSING: delay the flap folding down until the paper slides in (0.4s) */
+    transition: transform 0.5s ease-in-out 0.4s, z-index 0s 0.65s;
+    background-image: linear-gradient(to bottom, #fdfaf6, #f9f4ec);
+}
+
+.envelope.open .envelope-flap {
+    transform: rotateX(180deg);
+    z-index: 1;
+    /* OPENING: flap folds up immediately (0s) */
+    transition: transform 0.5s ease-in-out 0s, z-index 0s 0.25s;
+}
+
+.heart-sticker {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    /* CLOSING: Wait for the flap to fold down (0.4s paper slide + 0.5s flap fold = 0.9s delay) */
+    transition: opacity 0.3s ease 0.9s;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.envelope.open .heart-sticker {
+    opacity: 0;
+    /* OPENING: Fade out instantly */
+    transition: opacity 0.2s ease 0s;
+}
+
+.envelope-paper {
+    position: absolute;
+    bottom: 5px;
+    left: 4%;
+    width: 92%;
+    height: 190px;
+    /* Fits entirely inside the 220px envelope */
+    background: #fff;
+    border-radius: 8px;
+    z-index: 2;
+    /* Between back and front folds */
+    padding: 1.5rem 1.5rem;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    /* CLOSING: Paper slides in immediately (0s delay) */
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1) 0s;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    /* Soft shadow */
+    border: 1px solid #eee;
+}
+
+.envelope.open .envelope-paper {
+    transform: translateY(-125px);
+    /* OPENING: Paper waits for flap to open before sliding out (0.4s delay) */
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1) 0.4s;
+}
+
+.envelope-paper p {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    color: var(--text-color);
+    line-height: 1.3;
+    opacity: 0;
+    transform: translateY(10px);
+    /* CLOSING: text fades out instantly */
+    transition: opacity 0.3s ease 0s, transform 0.3s ease 0s;
+}
+
+.envelope.open .envelope-paper p {
+    opacity: 1;
+    transform: translateY(0);
+    /* OPENING: text waits for paper to slide up before fading in */
+    transition: opacity 0.5s ease 0.8s, transform 0.5s ease 0.8s;
+}
+
+/* Timer Section */
+.timer-section {
+    align-items: center;
+    /* Transparent background to inherit from body */
+}
+
+.timer-date {
+    font-size: 1.2rem;
+    color: #999;
+    margin-top: -1.5rem;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.timer-display {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    max-width: 800px;
+}
+
+.time-box {
+    background: white;
+    width: 100px;
+    height: 110px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(255, 141, 161, 0.15);
+    transition: transform 0.3s ease;
+}
+
+.time-box:hover {
+    transform: scale(1.05);
+}
+
+.time-box .number {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    font-family: var(--font-body);
+}
+
+.time-box .label {
+    font-size: 0.9rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 0.5rem;
+}
+
+/* Shuffle Game */
+.game-section {
+    align-items: center;
+    /* Transparent background to inherit from body */
+}
+
+.shuffle-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+}
+
+.shuffle-box {
+    background: var(--secondary-color);
+    padding: 2rem;
+    border-radius: 24px;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+    height: 250px;
+    /* Fixed height to prevent bouncing */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+#couple-result {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    /* Slightly smaller for 2 lines */
+    line-height: 1.2;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.2s ease;
+}
+
+.cute-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 1rem 3rem;
+    font-size: 1.2rem;
+    font-family: var(--font-body);
+    font-weight: 700;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(255, 141, 161, 0.4);
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+}
+
+.cute-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(255, 141, 161, 0.5);
+}
+
+.cute-btn:active {
+    transform: translateY(2px);
+    box-shadow: 0 5px 10px rgba(255, 141, 161, 0.3);
+}
+
+/* ----------------------------------- */
+/* Heart Collector Fixed UI            */
+/* ----------------------------------- */
+.heart-collector {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: white;
+    padding: 1rem 1.5rem;
+    border-radius: 30px;
+    box-shadow: 0 8px 25px rgba(255, 141, 161, 0.3);
+    border: 2px solid #ffd1d9;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 9999;
+    /* Hidden by default */
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+    pointer-events: none;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.heart-collector.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+.heart-collector .collector-icon {
+    font-size: 1.5rem;
+    animation: heartbeat 1.5s infinite;
+    color: #ff4d6d;
+}
+
+.heart-collector .collector-text {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: #888;
+    margin-right: 5px;
+}
+
+.heart-collector .collector-count {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--primary-color);
+    font-weight: bold;
+    min-width: 30px;
+    text-align: center;
+    transition: opacity 0.3s ease;
+}
+
+/* Hide count and text when zero hearts are collected */
+.heart-collector.zero .collector-count,
+.heart-collector.zero .collector-text {
+    display: none;
+}
+
+@keyframes heartbeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    15% {
+        transform: scale(1.2);
+    }
+
+    30% {
+        transform: scale(1);
+    }
+
+    45% {
+        transform: scale(1.2);
+    }
+
+    60% {
+        transform: scale(1);
+    }
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 2rem;
+    background: var(--bg-color);
+    color: #aaa;
+}
+
+/* Responsive */
+
+/* Landscape / Wider Screens (Show adjacent cards peeking) */
+@media (min-width: 769px) {
+    .cards-container {
+        overflow: visible;
+        /* Allow peeking on desktop */
+    }
+}
+
+@media (max-width: 768px) {
+    section {
+        padding: 2rem 1rem;
+        min-height: 80vh;
+        /* Reduce blank space vertically */
+    }
+
+    .hero {
+        min-height: 100vh;
+        /* Keep the first section full height */
+    }
+
+    .memories {
+        padding-top: 10rem;
+        padding-bottom: 8rem;
+        /* Extra space between the cards and the timer */
+    }
+
+    .letters-container {
+        flex-direction: column;
+        gap: 3rem;
+    }
+
+    .title {
+        font-size: 2.8rem;
+    }
+
+    .hidden-message h2 {
+        font-size: 2rem;
+    }
+
+    .nav-btn {
+        display: none;
+        /* Hide hardware buttons on mobile to encourage swiping */
+    }
+
+    .timer-display {
+        gap: 1rem;
+    }
+
+    .time-box {
+        width: 80px;
+        height: 90px;
+    }
+
+    .time-box .number {
+        font-size: 1.5rem;
+    }
+
+    .time-box .label {
+        font-size: 0.75rem;
+    }
+
+    #couple-result {
+        font-size: 1.8rem;
+    }
+}

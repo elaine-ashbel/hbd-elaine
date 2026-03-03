@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 23rd Elaine 💕</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Quicksand:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+
+<body>
+    <!-- Floating Balloons Container -->
+    <div id="balloon-container"></div>
+
+    <!-- Section 1: Hero & Gift -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <h1 class="title">Happy 23rd Birthday</h1>
+            <p class="subtitle">Click the gift below to open!</p>
+
+            <div class="gift-container" id="gift-box">
+                <!-- SVG Gift Box -->
+                <svg viewBox="0 0 24 24" class="gift-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path class="gift-lid"
+                        d="M12 7V5M12 7C12 7 10 3 6 3C4 3 2 5 2 7C2 9 6 9 12 7ZM12 7C12 7 14 3 18 3C20 3 22 5 22 7C22 9 18 9 12 7Z"
+                        stroke="#ff8da1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <rect class="gift-top" x="3" y="9" width="18" height="4" rx="1" stroke="#ff8da1" stroke-width="2"
+                        stroke-linecap="round" />
+                    <path class="gift-bottom" d="M4 13V20C4 20.5523 4.44772 21 5 21H19C19.5523 21 20 20.5523 20 20V13"
+                        stroke="#ff8da1" stroke-width="2" stroke-linecap="round" />
+                    <path class="gift-ribbon" d="M12 9V21" stroke="#ff8da1" stroke-width="2" stroke-linecap="round" />
+                </svg>
+            </div>
+
+            <p
+                style="font-family: 'Dancing Script', cursive; font-size: 1.2rem; margin-top: 20px; color: #ff4d6d;max-width:80vw; line-height: 1.4; margin-left: auto; margin-right: auto; text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);">
+                Internet is a big place, but I hope it won't mind giving me a small corner to show my love for you.
+            </p>
+
+            <div class="hidden-message" id="message">
+                <h2>HAPPY BIRTHDAY ELAINE 💕</h2>
+                <p>YOU MEAN THE WORLD TO ME,</p>
+                <p>I WILL ALWAYS LOVE YOU</p>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <div class="arrow">↓</div>
+        </div>
+    </section>
+
+    <!-- Content to Reveal After Gift is Opened -->
+    <div id="hidden-content" style="display: none; opacity: 0; transition: opacity 1.5s ease;">
+        <!-- Section 2: Horizontal Scrolling Cards -->
+        <section class="memories">
+            <h2 class="section-title">Some cute cards for you</h2>
+            <div class="cards-container">
+                <div class="card">
+                    <img src="card01.png" alt="Cute Card 1">
+                </div>
+                <div class="card">
+                    <img src="card02.png" alt="Cute Card 2">
+                </div>
+                <div class="card">
+                    <img src="card03.png" alt="Cute Card 3">
+                </div>
+                <div class="card">
+                    <img src="card04.png" alt="Cute Card 4">
+                </div>
+                <div class="card">
+                    <img src="card05.png" alt="Cute Card 5">
+                </div>
+                <div class="card">
+                    <img src="card06.png" alt="Cute Card 6">
+                </div>
+                <div class="card">
+                    <img src="card07.png" alt="Cute Card 7">
+                </div>
+                <div class="card">
+                    <img src="card08.png" alt="Cute Card 8">
+                </div>
+                <div class="card">
+                    <img src="card09.png" alt="Cute Card 9">
+                </div>
+                <div class="card">
+                    <img src="card10.png" alt="Cute Card 10">
+                </div>
+                <div class="card">
+                    <img src="card11.png" alt="Cute Card 11">
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2.5: 23 Letters -->
+        <section class="letters-section" id="letters">
+            <h2 class="section-title">23 letters for you</h2>
+            <div class="letters-container">
+                <!-- Letter / Envelope Area -->
+                <div class="letter-area">
+                    <div class="envelope-wrapper" id="envelope-wrapper">
+                        <div class="envelope" id="envelope">
+                            <!-- Greek Border Outer Wrapper -->
+                            <div class="envelope-back">
+                                <div class="greek-border"></div>
+                            </div>
+                            <div class="envelope-paper">
+                                <p id="letter-text">Dear Elaine, you are amazing.</p>
+                            </div>
+                            <div class="envelope-front"></div>
+                            <div class="envelope-flap"></div>
+                            <div class="heart-sticker">
+                                <!-- Custom SVG Heart Sticker -->
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="#ff4d6d">
+                                    <path
+                                        d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Incrementor Controls (Greek Navbar Style) -->
+                <div class="letter-controls greek-navbar">
+                    <div class="greek-ornament">
+                        <svg width="24" height="24" viewBox="0 0 100 100" fill="none" stroke="#d4b899" stroke-width="6">
+                            <path d="M 10,90 L 10,10 L 90,10 L 90,30 L 30,30 L 30,70 L 70,70 L 70,50 L 50,50" />
+                        </svg>
+                    </div>
+
+                    <button class="letter-btn" id="letter-down" title="Previous Letter">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M15 18l-6-6 6-6" />
+                        </svg>
+                    </button>
+
+                    <div class="letter-counter-wrapper">
+                        <span class="counter-label">Letter</span>
+                        <div class="letter-counter" id="letter-counter">1</div>
+                    </div>
+
+                    <button class="letter-btn" id="letter-up" title="Next Letter">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 18l6-6-6-6" />
+                        </svg>
+                    </button>
+
+                    <div class="greek-ornament">
+                        <svg width="24" height="24" viewBox="0 0 100 100" fill="none" stroke="#d4b899" stroke-width="6">
+                            <path d="M 90,90 L 90,10 L 10,10 L 10,30 L 70,30 L 70,70 L 30,70 L 30,50 L 50,50" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fixed Heart Collector -->
+        <div class="heart-collector" id="heart-collector">
+            <span class="collector-icon heart-obj">❤</span>
+            <span class="collector-count" id="heart-count">0</span>
+        </div>
+
+        <!-- Section 3: Timer -->
+        <section class="timer-section">
+            <h2 class="section-title">Time since we first started talking</h2>
+            <p class="timer-date">21st December 2022</p>
+            <div class="timer-display" id="timer">
+                <div class="time-box">
+                    <span class="number" id="years">0</span>
+                    <span class="label">Years</span>
+                </div>
+                <div class="time-box">
+                    <span class="number" id="months">0</span>
+                    <span class="label">Months</span>
+                </div>
+                <div class="time-box">
+                    <span class="number" id="days">0</span>
+                    <span class="label">Days</span>
+                </div>
+                <div class="time-box">
+                    <span class="number" id="hours">0</span>
+                    <span class="label">Hours</span>
+                </div>
+                <div class="time-box">
+                    <span class="number" id="minutes">0</span>
+                    <span class="label">Mins</span>
+                </div>
+                <div class="time-box">
+                    <span class="number" id="seconds">0</span>
+                    <span class="label">Secs</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Shuffle Game -->
+        <section class="game-section">
+            <h2 class="section-title">I hope we end up like...</h2>
+            <div class="shuffle-container">
+                <div class="shuffle-box">
+                    <span id="couple-result">Click to find out!</span>
+                </div>
+                <button id="shuffle-btn" class="cute-btn">Shuffle 💕</button>
+            </div>
+        </section>
+
+    </div> <!-- End hidden-content -->
+
+    </div> <!-- End hidden-content -->
+
+    <footer>
+        <p>Made with ❤️ just for you</p>
+    </footer>
+    </div>
+
+    <!-- Confetti Library for Balloon Popping -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
