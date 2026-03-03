@@ -170,6 +170,10 @@ document.addEventListener('DOMContentLoaded', () => {
             heartsCollected++;
             if (heartCountDisplay) heartCountDisplay.innerText = heartsCollected;
 
+            if (heartsCollected > 0 && heartsCollected % 5 === 0) {
+                showerDaisies();   // ← This line must be here
+            }
+
             // Show Collector UI temporarily and remove the initial zero-state hiding
             if (heartCollectorUI) {
                 heartCollectorUI.classList.remove('zero');
@@ -188,6 +192,48 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (document.body.contains(obj)) obj.remove();
             }, 1500);
         });
+
+        document.body.appendChild(obj);
+
+        setTimeout(() => {
+            if (document.body.contains(obj)) obj.remove();
+        }, animDuration * 1000);
+    }
+
+    function showerDaisies() {
+        const daisyCount = 45;                    // more daisies = prettier explosion
+        for (let i = 0; i < daisyCount; i++) {
+            setTimeout(spawnDaisy, i * 100);      // staggered for a nice cascade
+        }
+    }
+
+    function spawnDaisy() {
+        const obj = document.createElement('div');
+        obj.classList.add('ambient-obj', 'daisy-obj');
+
+        // Premium SVG Daisy (exactly as used in the original site)
+        obj.innerHTML = `<svg width="100%" height="100%" viewBox="0 0 100 100">
+            <g transform="translate(50, 50)" fill="#ffffff">
+                <ellipse cx="0" cy="-25" rx="14" ry="25" />
+                <ellipse cx="0" cy="25" rx="14" ry="25" />
+                <g transform="rotate(60)"><ellipse cx="0" cy="-25" rx="14" ry="25" /><ellipse cx="0" cy="25" rx="14" ry="25" /></g>
+                <g transform="rotate(120)"><ellipse cx="0" cy="-25" rx="14" ry="25" /><ellipse cx="0" cy="25" rx="14" ry="25" /></g>
+            </g>
+            <circle cx="50" cy="50" r="14" fill="#facc15" />
+        </svg>`;
+
+        const sizeRem = 1.6 + Math.random() * 2;
+        obj.style.width = `${sizeRem}rem`;
+        obj.style.height = `${sizeRem}rem`;
+
+        const leftPos = Math.random() * 100;
+        const animDuration = 4 + Math.random() * 3;
+
+        obj.style.left = `${leftPos}vw`;
+        obj.style.top = `-55px`;
+        obj.style.animation = `daisyFall ${animDuration}s linear forwards`;
+        obj.style.zIndex = 10000;
+        obj.style.pointerEvents = 'none';
 
         document.body.appendChild(obj);
 
