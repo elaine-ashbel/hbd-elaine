@@ -27,13 +27,14 @@ body {
     color: var(--text-color);
     overflow-x: hidden;
     overflow-y: hidden;
-    /* Hide scrollbar until gift is opened */
+    /* Reserve scrollbar space instead of completely hiding it */
+    scrollbar-gutter: stable;
     scroll-behavior: smooth;
 }
 
 body.scrollable {
-    overflow-y: scroll;
-    /* Show scrollbar after gift interaction */
+    overflow-y: auto;
+    /* Allow scrolling after gift interaction */
 }
 
 body::after {
@@ -1086,4 +1087,5 @@ footer {
         font-size: 1.8rem;
     }
 }
+
 
