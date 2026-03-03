@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const height = width * 1.25;
         const animDuration = 5 + Math.random() * 5; // 5s to 10s
         const bgCol = colors[Math.floor(Math.random() * colors.length)];
-        const delay = Math.random() * 1;
+        const delay = Math.random() * .5;
 
         balloon.style.left = `${leftPos}vw`;
         balloon.style.width = `${width}px`;
@@ -244,8 +244,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Create initial ambient hearts
     const isPortrait = window.innerWidth <= 768;
-    const initialHearts = isPortrait ? 17 : 35;
-    const spawnInterval = isPortrait ? 800 : 400;
+    const initialHearts = isPortrait ? 10 : 30;
+    const spawnInterval = isPortrait ? 1200 : 800;
 
     for (let i = 0; i < initialHearts; i++) {
         setTimeout(spawnAmbientHeart, i * 150);
@@ -644,4 +644,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }, shuffleSpeed);
     });
 });
+
 
