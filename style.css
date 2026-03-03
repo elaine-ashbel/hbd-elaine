@@ -15,6 +15,10 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    /* Removes blue tap highlight on mobile/touch */
+    user-select: none;
+    /* Prevents text and elements from being accidentally highlighted blue on drag/click */
 }
 
 body {
@@ -993,6 +997,25 @@ footer {
     padding: 2rem;
     background: var(--bg-color);
     color: #aaa;
+}
+
+/* ====================== DAISY FALL ====================== */
+.daisy-obj {
+    position: fixed;
+    pointer-events: none;
+    z-index: 10000;
+}
+
+@keyframes daisyFall {
+    0% {
+        transform: translateY(-50px) rotate(0deg);
+        opacity: 0.9;
+    }
+
+    100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 1;
+    }
 }
 
 /* Responsive */
