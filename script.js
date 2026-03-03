@@ -384,14 +384,14 @@ document.addEventListener('DOMContentLoaded', () => {
         "If I had a dollar for every time you cross my mind, I would have exactly one dollar.",
         "You are the most special person in my life.",           // 1
         "I love you more than words can say.",               // 3                               // 4
-        "You push me to be a better person. ",                 // 5
-        "My heart skips a beat when I look at you.",                   // 6
+        "You push me to be a better person. ",                 // 5                   // 6
         "Sharing the good news with you is more exiting than the good news itself.",
         "I love the way you sound when you talk about things you love.",                             // 7
         "Every moment with you feels like a dream I never want to wake up from.",// 8
         "Ruining eachothers insta feed is something i miss.",
         "I love your voice more than my favorite song.",                        // 9
-        "I love how we used to laugh about the silliest things together.",           // 10                   // 11
+        "I love how we used to laugh about the silliest things together.",
+        "11:11 is another tradition I miss, But i still wish on 11:11 every day",// 10                   // 11
         "you are so effortlessly elegant",              // 12
         "Kalyanathinu mloftil ninnu saree vangi tharam.",                 // 13                        // 14
         "Thinking about you is my favorite part of the day.",                    // 15
@@ -404,7 +404,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "I can't wait to look back one day and smile at how it all started.",
         "You complete me.",
         "Happy 23rd Birthday, Elaine .",          // 23
-        "23 letters for today and a long lifetime of love waiting to be written"                     // 24 (Infinity)
+        "23 letters for today and a lifetime of love waiting to be written"                     // 24 (Infinity)
     ];
 
     let currentLetterIndex = 0; // 0 to 23
@@ -644,6 +644,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, shuffleSpeed);
     });
 });
+
 
 
 
