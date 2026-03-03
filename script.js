@@ -389,11 +389,11 @@ document.addEventListener('DOMContentLoaded', () => {
         "Sharing the good news with you is more exiting than the good news itself.",
         "I love the way you sound when you talk about things you love.",                             // 7
         "Every moment with you feels like a dream I never want to wake up from.",// 8
-        "You are my safe place, my comfort, and my home.",
+        "Ruining eachothers insta feed is something i miss.",
         "I love your voice more than my favorite song.",                        // 9
         "I love how we used to laugh about the silliest things together.",           // 10                   // 11
         "you are so effortlessly elegant",              // 12
-        "Kalyanathinu mloftinu saree vangi tharam.",                 // 13                        // 14
+        "Kalyanathinu mloftil ninnu saree vangi tharam.",                 // 13                        // 14
         "Thinking about you is my favorite part of the day.",                    // 15
         "I'd rather lose my life than to lose you.",            // 16
         "You are my once in an eternity kind of love.",         // 17                           // 18
@@ -403,7 +403,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "I'm looking forward for every sunrise and sunset we'll share together.",
         "I can't wait to look back one day and smile at how it all started.",
         "You complete me.",
-        "Happy 23rd Birthday to you Elaine .",          // 23
+        "Happy 23rd Birthday, Elaine .",          // 23
         "23 letters for today and a long lifetime of love waiting to be written"                     // 24 (Infinity)
     ];
 
@@ -644,3 +644,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }, shuffleSpeed);
     });
 });
+
